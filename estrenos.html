@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Bangers&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC&display=swap" rel="stylesheet">
+    <title>Mi Pelicula</title>
+</head>
+
+<body purple style="background: url('img/white-wall-3-2.png') black">
+    <div id="app">
+        <!------------------Inicio de zona de trabajo--------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------Inicio de cabeza de pagina------------------------------->
+        <!--------------------------------------------------->
+        <header>
+            <div class="navbar-fixed">
+                <nav class="black">
+                    <div class="nav-wrapper">
+                        <a href="index.html" class="brand-logo" style="font-family: 'Bowlby One SC', cursive;">My
+                            Movies</a><a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons">live_tv</i></a>
+                        <ul id="nav-mobile"  class="right hide-on-med-and-down">
+
+                            <li><a href="estrenos.html" class="white-text"><i
+                                        class="material-icons left">star</i>Estrenos</a></li>
+                            <li><a href="index.html" class="white-text"><i
+                                        class="material-icons left">movie</i>Peliculas</a>
+                            </li>
+                            <li><a href="series.html" class="white-text"><i
+                                        class="material-icons left">live_tv</i>Series</a>
+                            </li>
+                            <li><a href="AcercaDe.html" class="white-text"><i class="material-icons left">help</i>Acerca
+                                    de</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+            <ul id="slide-out" class="sidenav black">
+                <li>
+                    <div class="user-view">
+                        <div class="background" style="height: 200px">
+                            <img src="img/movies.jpg" class="responsive-img">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+                </li>
+
+
+                <li><a href="estrenos.html" class="white-text"><i class="material-icons white-text">star</i>Estrenos</a>
+                </li>
+                <hr>
+                <li><a href="index.html" class="white-text"><i class="material-icons white-text">movie</i>Peliculas</a>
+                </li>
+                <hr>
+                <li><a href="series.html" class="white-text"><i class="material-icons white-text">live_tv</i>Series</a>
+                </li>
+                <hr>
+                <li><a href="AcercaDe.html" class="white-text"><i class="material-icons white-text">help</i>Acerda
+                        de...</a>
+                </li>
+                <hr>
+
+            </ul>
+        </header>
+        <!--_________________________________________-->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!------------------Fin de la cabeza de pagina--------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+
+
+
+
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!---------------Inicio de cuerpo de pagina------------------------------------>
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <main>
+
+            <!-------------------Inicio Slider-------------------------------->
+            <!--------------------------------------------------->
+
+            <div id="home" class="row">
+                <div class="col l12 m12 s12">
+                    <div class="slider right hide-on-med-and-down "  >
+                        <ul class="slides">
+                            <li>
+                                <img src="img/frozen2.jpeg" class="responsive-img"> <!-- random image -->
+                            </li>
+                            <li>
+                                <img src="img/genesis.jpeg" class="responsive-img"> <!-- random image -->
+
+                            </li>
+                            <li>
+                                <img src="img/manda.jpg" class="responsive-img"> <!-- random image -->
+
+                            </li>
+                            <li>
+                                <img src="img/reyleon.jpg" class="responsive-img"> <!-- random image -->
+
+                            </li>
+                            <li>
+                                <img src="img/shazam.jpg" class="responsive-img"> <!-- random image -->
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--------------------------------------------------->
+            <!------------------------Final de Slider--------------------------->
+
+            <div class="row ">
+                <br>
+                <h2 id="peliculas" style="font-family: 'Bangers', cursive" class="white-text center">Nuevos Estrenos</h2>
+                <hr>
+                <div class="col l6  s10 center" v-for=" item in peliculas">
+                    <div class="card-panel center-align"
+                        style="width: 600px; font-family: 'Bangers', cursive; padding: 2%; border-radius: 30px ; background : url('img/brick-wall.png') white ">
+                        <div class="row">
+                            <div class="col l4 s12">
+                                <p>
+                                    <img :src="url_img + item.poster_path" height="252px"
+                                        style="padding: 2%; border-radius: 30px">
+                                </p>
+                                <p> <button @click="ver_modal(item)" class="btn floating blue"
+                                        style=" font-family: 'Bangers', cursive;border-radius: 30px">
+                                        <i class="material-icons left">arrow_drop_down_circle</i> Mas
+                                        informacion</button>
+                                </p>
+                            </div>
+                            <div class="col l8 s10">
+                                <p>
+                                    <br>
+                                    <h3>{{item.title}} </h3>
+                                    <h5>{{item.release_date}}</h5>
+
+                                    <div v-if="item.vote_average >= 6">
+                                        <h5 class="green-text">{{item.vote_average}}</h5>
+                                    </div>
+                                    <div v-else>
+                                        <h5 class="red-text">{{item.vote_average}}</h5>
+                                    </div>
+
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <h2 id="serie" class="center white-text" style="font-family: 'Bangers', cursive">Series</h2>
+            <br>
+            <hr>
+            <div class="row">
+                <div class="col l3  m6 s10 center " v-for="item in series">
+                    <div class="card-panel center-align"
+                        style="height: 450px; border-radius: 30px ; background : url('img/brick-wall.png') white ">
+                        <img :src="url_img + item.poster_path" height="252px">
+                        <h5 style=" font-family: 'Bangers', cursive">
+                            <h5 style="font-family: 'Bangers', cursive">{{item.original_name}}</h5>
+                            <div v-if="item.vote_average >= 6">
+                                <h6 class="green-text" style="font-family: 'Bangers', cursive">{{item.vote_average}}
+                                </h6>
+                            </div>
+                            <div v-else>
+                                <h6 class="red-text" style="font-family: 'Bangers', cursive">{{item.vote_average}}</h6>
+                            </div>
+
+                            <button @click="ver_modal(item)" class="btn floating red"
+                                style=" font-family: 'Bangers', cursive">
+                                <i class="material-icons left">info</i> Mas informacion</button>
+                        </h5>
+
+                    </div>
+                </div>
+            </div>
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large pink">
+                    <i class="large material-icons">arrow_upward</i>
+                </a>
+                <ul>
+                    <li><a href="estrenos.html" class="btn-floating red"><i class="material-icons">star</i></a></li>
+                    <li><a href="index.html" class="btn-floating yellow darken-1"><i
+                                class="material-icons">movie</i></a>
+                    </li>
+                    <li><a href="series.html" class="btn-floating green"><i class="material-icons">live_tv</i></a></li>
+                    <li><a href="AcercaDe.html" class="btn-floating blue"><i class="material-icons">help</i></a></li>
+                </ul>
+            </div>
+            <div id="modal1" class="modal black">
+                <div v-if="info!=null">
+                    <div class="modal-content white-text" purple
+                        style="background: url('img/white-wall-3-2.png') black">
+                        <div class="row center-align">
+                            <div class="col l4 s12">
+                                <img :src="url_img + info.poster_path" height="252px" class="circle"> <br>
+                                <p>Puntuacion: {{info.vote_average}}</p>
+                            </div>
+                            <div class="col l8 s12">
+                                <h4 style="font-family: 'Bangers', cursive">{{info.original_name}}</h4>
+                                <h4 style="font-family: 'Bangers', cursive">{{info.original_title}}</h4>
+                                <h6 style="font-family: 'Bangers', cursive">{{info.release_date}}</h6>
+                                <p>
+
+                                    {{info.overview}} <br>
+                                </p>
+                                <p style="font-family: 'Bangers', cursive">
+                                    Fecha de emisión: {{info.first_air_date}} <br>
+                                    Likes: {{info.popularity}} <br>
+                                    Idioma: {{info.original_language}} <br>
+                                </p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer black white-text">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat white">Atras</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!-----------------------Fin de el cuerpo de pagina---------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!-----------------Inicio de pie de pagina---------------------------------->
+        <!--------------------------------------------------->
+        <footer class="page-footer black" style="background : url('img/asfalt-light.png')black">
+            <div class="container">
+                <div class="row">
+                    <div class="col l4 s6">
+                        <ul>
+                            <h5 class="white-text"> <i class="material-icons small left">movie</i>The
+                                Top Movie</h5> <br>
+
+                            <li> <a class="white-text" href="#"> <i class="material-icons left">play_arrow</i>
+                                    Pelicula</a>
+
+                                <br><br>
+                            <li> <a class="white-text" href="#"> <i class="material-icons  left">live_tv</i>
+                                    Series</a>
+
+
+                        </ul>
+
+                    </div>
+                    <div class="col l4 s6 ">
+                        <h5 class="white-text"><i class="material-icons small left">call</i>Contactanos al correo</h5>
+                        <br>
+
+                        <a class="white-text" href="#">nicolas.saavedra16@inacapmail.cl <i
+                                class="material-icons left">email</i> </a>
+                        <br><br>
+                        <a class="white-text" href="#">eduardo.jorquera11@inacapmail.cl <i
+                                class="material-icons left">email</i> </a>
+                        <br>
+
+
+
+                    </div>
+                    <div class="col l4 s12">
+                        <h5 class="white-text"><i class="material-icons small left">group_add</i>Redes Sociales</h5>
+                        <br>
+                        <li><a class="white-text" href="#"><img src="img/icons8-facebook-nuevo-24.png" height="22px">
+                                /TheTopMovie</a>
+                            <br>
+                        <li> <a class="white-text" href="#"> <img src="img/icons8-instagram-24.png" height="22px">
+                                @Thetopmovie</a>
+                            <br>
+                        <li> <a class="white-text" href="#"> <img src="img/icons8-twitter-24.png" height="22px">
+                                @Thetopmovie_ch</a>
+                            <br>
+                        <li> <a class="white-text" href="#"> <img src="img/icons8-youtube-play-24.png" height="22px">
+                                The Top Movie </a>
+                            <br>
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright black">
+                <div class="container white-text">
+                    © 2019 Desarrollo de Aplicaciones Web
+                    <a class="white-text right" href="#!"> Creado por los alumnos: Nicolás Saavedra , Eduardo Jorquera
+
+                    </a>
+                </div>
+            </div>
+        </footer>
+
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!-------------------Fin de pie de pagina-------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!--------------------------------------------------->
+        <!-----------------fin de la zona de trabajo "app"---------------------------------->
+    </div>
+
+
+
+
+
+    <!--------------------------------------------------->
+    <!-----------------scriptsssss---------------------------------->
+    <!--------------------------------------------------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://api.themoviedb.org/3/configuration?api_key=09879801f1b14733b3b2c5511839f930"></script>
+
+    <script>
+        new Vue({
+
+            el: '#app',
+            data: {
+                peliculas: [],
+                series: [],
+                Pelicula_anio: [],
+                url: 'https://api.themoviedb.org/3/movie/popular?api_key=09879801f1b14733b3b2c5511839f930&language=es-ES&page=1',
+                url_img: 'https://image.tmdb.org/t/p/w400',
+                url_series: 'https://api.themoviedb.org/3/tv/popular?api_key=09879801f1b14733b3b2c5511839f930&language=es-ES&page=1',
+                info: null,
+                url_pelicula_anio: 'https://api.themoviedb.org/3/movie/475557?api_key=09879801f1b14733b3b2c5511839f930&language=en-US'
+
+            },
+            methods: {
+                async cargar() {
+                    var resultado = await axios.get(this.url);
+                    var resultado1 = await axios.get(this.url_series);
+                    var resultado2 = await axios.get(this.url_pelicula_anio);
+
+                    this.peliculas = resultado.data.results;
+                    this.series = resultado1.data.results;
+                    this.Pelicula_anio = resultado2.data.results;
+                    // console.log(resultado.data);
+
+                },
+                ver_modal(item) {
+                    this.info = item;
+                    var instance = M.Modal.getInstance(document.getElementById('modal1'));
+                    instance.open();
+                }
+
+            },
+            created() {
+                this.cargar();
+            },
+            mounted() {
+                document.addEventListener('DOMContentLoaded', function () {
+                    var elems = document.querySelectorAll('.modal');
+                    var instances = M.Modal.init(elems);
+                });
+                document.addEventListener('DOMContentLoaded', function () {
+                    var elems = document.querySelectorAll('.slider');
+                    var instances = M.Slider.init(elems, {
+                        height: 650,
+                        indicators: false
+                    });
+                });
+                document.addEventListener('DOMContentLoaded', function () {
+                    var elems = document.querySelectorAll('.sidenav');
+                    var instances = M.Sidenav.init(elems);
+
+                    var elems = document.querySelectorAll('.scrollspy');
+                    var instances = M.ScrollSpy.init(elems);
+                    var elems = document.querySelectorAll('.fixed-action-btn');
+                    var instances = M.FloatingActionButton.init(elems);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
